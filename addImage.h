@@ -51,12 +51,12 @@ struct tagAddImage
 		IMAGEMANAGER->addImage("back_Ground_Select_Pointer", "./image/mapTool/icon/backGround_Select_Pointer.bmp", 32, 32, true, RGB(255, 0, 255));	// 백 그라운드 선택 포인터
 		IMAGEMANAGER->addImage("minus_Icon", "./image/mapTool/icon/Minus.bmp", 32, 30, true, RGB(255, 0, 255));										// 레이어 삭제 버튼
 		IMAGEMANAGER->addImage("rect_Plus_Icon", "./image/mapTool/icon/BT_Rect_Plus.bmp", 52, 52, true, RGB(255, 0, 255));
-		IMAGEMANAGER->addImage("footHoldType_Check", "./image/mapTool/icon/FootHoldType_Check.bmp", 64, 64, true, RGB(255, 0, 255));
-		IMAGEMANAGER->addImage("wallType_Check", "./image/mapTool/icon/WallType_Check.bmp", 64, 64, true, RGB(255, 0, 255));
-		IMAGEMANAGER->addImage("trapType_Check", "./image/mapTool/icon/TrapType_Check.bmp", 64, 64, true, RGB(255, 0, 255));
 		IMAGEMANAGER->addImage("footHoldType_Check_Button", "./image/mapTool/icon/FootHoldType_Check_Button.bmp", 32, 30, true, RGB(255, 0, 255));
 		IMAGEMANAGER->addImage("wallType_Check_Button", "./image/mapTool/icon/WallType_Check_Button.bmp", 32, 30, true, RGB(255, 0, 255));
 		IMAGEMANAGER->addImage("trapType_Check_Button", "./image/mapTool/icon/TrapType_Check_Button.bmp", 32, 30, true, RGB(255, 0, 255));
+		IMAGEMANAGER->addImage("footHoldType_Check", "./image/mapTool/icon/FootHoldType_Check.bmp", 64, 64, true, RGB(255, 0, 255));
+		IMAGEMANAGER->addImage("wallType_Check", "./image/mapTool/icon/WallType_Check.bmp", 64, 64, true, RGB(255, 0, 255));
+		IMAGEMANAGER->addImage("trapType_Check", "./image/mapTool/icon/TrapType_Check.bmp", 64, 64, true, RGB(255, 0, 255));
 
 		// mapTool <tile Pallet>
 		IMAGEMANAGER->addFrameImage("tutorial_Tile", "./image/mapTool/tile/terrain_Tile/Tutorial_Tile.bmp", 576, 256, 9, 4, true, RGB(255, 0, 255));
@@ -113,7 +113,7 @@ struct tagAddImage
 		KEYANIMANAGER->addCoordinateFrameAnimation("SkulJumpAttackL", "SkulJumpAttack", 4, 7, 5, false, true);
 		KEYANIMANAGER->addCoordinateFrameAnimation("SkulSkillL", "SkulSkill", 4, 7, 5, false, true);
 		KEYANIMANAGER->addCoordinateFrameAnimation("SkillWalkL", "SkillWalk", 8, 15, 10, false, true);
-
+		
 		//Effact Ani R
 		KEYANIMANAGER->addCoordinateFrameAnimation("SmorkR", "Smork", 0, 12, 10, false, true);
 
