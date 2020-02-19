@@ -1,7 +1,8 @@
 #pragma once
 #include "singletonBase.h"
 #include "mapTool_Library.h"
-
+#include "Skul.h"
+#include "SkulHead.h"
 
 class DataManager : public singletonBase<DataManager>
 {
@@ -9,9 +10,7 @@ private:
 	vector<tagTileInfo>			_tileList;								// 타일맵 정보를 담는다.
 	tagMapInfo					_mapInfo;								// 맵의 정보를 담는다.
 	vector<tagSaveBackGround>	_vMapInfo[BACKGROUND_LAYER_COUNT];		// 맵의 배경을 담는다.
-
-
-
+	Skul* skul;
 public:
 	DataManager();		// 생성자
 	~DataManager();		// 소멸자
@@ -47,12 +46,29 @@ public:
 	// 데이터 매니저 정보 겟터
 	vector<tagTileInfo> get_TileList() { return _tileList; }												// 타일맵 정보
 
-
-	// ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 충돌체크 ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+	void Make_Skul();
 	
-	bool Collision_Player_Ground();																			// 플레이어 아래 타일에 땅이 있는지 체크
-	bool Collision_Player_Wall();																			// 플레이어가 바라보는 방향에 벽이 있는지 체크
-	bool Collision_Player_Trab();																			// 플레이어의 렉트가 함정 렉트와 충돌 했는지 체크
+
+	Skul* skuladdless()
+	{
+		return skul;
+	}
+	
+	//// ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 충돌체크 ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+	//
+	//// 플레이어 아래 타일에 땅이 있는지 체크 (플레이어가 추락 상태일때 사용)
+	//bool Collision_PlayerFall_Ground();		
+	//
+	//// 플레이어가 바라보는 방향에 벽이 있는지 체크
+	//bool Collision_Player_Wall();	
+	//
+	//// 플레이어의 위에 발판이 있는지 체크
+	//bool Collision_Player_FootHold();
+	//// 플레이어의 아래에 발판이 있는지 체크
+	//bool Collision_Player_FootHold_Down();
+	//
+	//// 플레이어의 렉트가 함정 렉트와 충돌 했는지 체크
+	//bool Collision_Player_Trab();																		
 
 };
 

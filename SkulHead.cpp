@@ -217,8 +217,7 @@ void SkulHead::Dash()
 			SKULDATA->bSet.isDash = true;
 		}
 	}
-	//SKULDATA->X = SKULDATA->X + (DASHDISTANCE * directionTemp);
-	//LerpMoving();
+	
 }
 
 void SkulHead::Jump()
@@ -255,7 +254,7 @@ void SkulHead::LerpMoving()
 
 	float elapsedTime = TIMEMANAGER->getElapsedTime();
 	// 거리 도달 
-	float moveSpeed = (elapsedTime / SKULDATA->Time) * DASHDISTANCE;//(SKULDATA->Distance - CAMERAMANAGER->Use_Func()->get_CameraXY().x);
+	float moveSpeed = (elapsedTime / SKULDATA->Time) * DASHDISTANCE;
 
 	float angle = 0;
 	if (SKULDATA->dir == DirectionRight)
@@ -278,7 +277,7 @@ void SkulHead::LerpMoving()
 		SKULDATA->bSet.isDash = false;
 		Idle();
 
-		//return;
+		
 	}
 }
 

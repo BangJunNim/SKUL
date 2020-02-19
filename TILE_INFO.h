@@ -15,6 +15,8 @@
 #define GROUND_SIZEY 5
 #define GROUND_IMAGE_CONUT 5	 // 땅(지형) 이미지 수량
 
+
+
 // 오브젝트 이미지의 갯수
 
 // 캐릭터 이미지의 갯수
@@ -43,4 +45,13 @@ enum class TILE_TYPE
 	ITEM,									// 아이템 오브젝트
 	TRAP,									// 함정 타일
 	BACKGROUND								// 백그라운드 타일
+};
+
+// 충돌용 타일 타입
+enum class COLLISION_TILE_TYPE
+{
+	NONE_TYPE,			// 아무것도 없는 타입
+	FOOTHOLD_TYPE,		// 발판 타입
+	WALL_TYPE,			// 벽 타입
+	TRAP_TYPE			// 함정 타입
 };

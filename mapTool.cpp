@@ -19,7 +19,7 @@ HRESULT mapTool::init()
 	_button.reset();								// 버튼 위치 초기화
 
 	_pallet.reset();								// 팔렛트 변수 초기화
-
+	
 	return S_OK;
 }
 
@@ -33,16 +33,16 @@ void mapTool::update()
 
 	_button.click_Button(&_mapInfo, _mapTool_Func.get_VBackGround_Info_Address(), &_vTileList);																										// 클릭 했다면 클릭 한 버튼으로 속성을 바꿔주는 함수
 
-	_pallet.setting_Pallet(_button.BT_Type, _button.BT_ImgNumber,
+	_pallet.setting_Pallet(_button.BT_Type, _button.BT_ImgNumber, 
 		&_button.BT_Prev, &_button.BT_Next, &_button.BT_Up, &_button.BT_Down, &_button.BT_RectPlus, &_button.BT_Minus);															// 팔렛트 위치 갱신
 
 	Find_Worker();																															// 클릭 한 버튼에 따라 함수 호출
 
 	_button.reset_Next_Prev_Pos(_pallet.pallet);																							// 다음, 이전 버튼 위치 갱신 함수
-
+	
 	_pallet.click_PalletInfo_Save((BUTTON_TYPE)_button.BT_Type, _button.BT_ImgNumber, &_button.BT_start_Draw, &_button.BT_FindNoTile);		// 이미지 선택
 
-	if (!_button.BT_FindNoTile)
+	if(!_button.BT_FindNoTile)
 		_mapTool_Func.setting_TileImg(&_vTileList, _pallet.current, _button, &_mapInfo, &_button.BT_start_Draw);							// 타일에 이미지를 셋팅한다. (다른 렉트에 충돌 되지 않는다면 그린다)
 }
 
@@ -83,7 +83,7 @@ void mapTool::testMove()
 	if (KEYMANAGER->isStayKeyDown(VK_RIGHT))
 	{
 		CAMERAMANAGER->Use_Func()->set_CameraX(CAMERAMANAGER->Use_Func()->get_CameraXY().x + 20);
-
+	
 	}
 	if (KEYMANAGER->isStayKeyDown(VK_DOWN))
 	{
@@ -98,64 +98,64 @@ void mapTool::Find_Worker()
 	// 클릭한 버튼에 따라서 필요한 함수를 호출한다.
 	switch ((BUTTON_TYPE)_button.BT_Type)
 	{
-	case BUTTON_TYPE::SAVE:
-		DATAMANAGER->map_Save(_vTileList, &_mapInfo, _mapTool_Func.get_VBackGround_Info_Address());
-		_button.BT_Type = BUTTON_TYPE::NONE;
-		break;
+		case BUTTON_TYPE::SAVE:
+			DATAMANAGER->map_Save(_vTileList, &_mapInfo, _mapTool_Func.get_VBackGround_Info_Address());
+			_button.BT_Type = BUTTON_TYPE::NONE;
+			break;
 
-	case BUTTON_TYPE::LOAD:
-		DATAMANAGER->map_Load(&_vTileList, &_mapInfo, _mapTool_Func.get_VBackGround_Info_Address());
-		_button.BT_Type = BUTTON_TYPE::NONE;
-		break;
+		case BUTTON_TYPE::LOAD:
+			DATAMANAGER->map_Load(&_vTileList, &_mapInfo, _mapTool_Func.get_VBackGround_Info_Address());
+			_button.BT_Type = BUTTON_TYPE::NONE;
+			break;
 
-	case BUTTON_TYPE::ERASER:
+		case BUTTON_TYPE::ERASER:
 
-		// 마우스 위치 보정
-		POINT ptMouse;
-		ptMouse.x = _ptMouse.x + CAMERAMANAGER->Use_Func()->get_CameraXY().x;
-		ptMouse.y = _ptMouse.y + CAMERAMANAGER->Use_Func()->get_CameraXY().y;
+				// 마우스 위치 보정
+				POINT ptMouse;
+				ptMouse.x = _ptMouse.x + CAMERAMANAGER->Use_Func()->get_CameraXY().x;
+				ptMouse.y = _ptMouse.y + CAMERAMANAGER->Use_Func()->get_CameraXY().y;
 
-		// 이 상태일때는 클릭하는 모든 타일의 속성을 초기화 시켜줘야한다.
-		if (KEYMANAGER->isStayKeyDown(VK_LBUTTON))
-		{
-			for (int i = 0; i < _vTileList.size(); ++i)
-			{
-				if (PtInRect(&_vTileList[i].rc, ptMouse))
+				// 이 상태일때는 클릭하는 모든 타일의 속성을 초기화 시켜줘야한다.
+				if (KEYMANAGER->isStayKeyDown(VK_LBUTTON))
 				{
-					_vTileList[i].reset_Tile();
+					for (int i = 0; i < _vTileList.size(); ++i)
+					{
+						if (PtInRect(&_vTileList[i].rc, ptMouse))
+						{
+							_vTileList[i].reset_Tile();
+						}
+					}
 				}
-			}
-		}
 
-		break;
+			break;
 
-	case BUTTON_TYPE::GROUND:
+		case BUTTON_TYPE::GROUND:
 
-		break;
+			break;
 
-	case BUTTON_TYPE::DECORATION:
+		case BUTTON_TYPE::DECORATION:
 
-		break;
+			break;
 
-	case BUTTON_TYPE::HIT_OBJECT:
+		case BUTTON_TYPE::HIT_OBJECT:
 
-		break;
+			break;
 
-	case BUTTON_TYPE::DOOR:
+		case BUTTON_TYPE::DOOR:
 
-		break;
+			break;
 
-	case BUTTON_TYPE::CHARACTER:
+		case BUTTON_TYPE::CHARACTER:
 
-		break;
+			break;
 
-	case BUTTON_TYPE::ITEM:
+		case BUTTON_TYPE::ITEM:
 
-		break;
+			break;
 
-	case BUTTON_TYPE::TRAP:
+		case BUTTON_TYPE::TRAP:
 
-		break;
-
+			break;
+			
 	}
 }

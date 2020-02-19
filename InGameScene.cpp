@@ -15,8 +15,8 @@ InGameScene::~InGameScene()
 HRESULT InGameScene::init()
 {
 	DATAMANAGER->map_Load_Datamanager("tutorial.map", "tutorial_Info.map");
-	player = new Skul(WINSIZEX / 2.f, WINSIZEY / 2.f);
-	player->init();
+	DATAMANAGER->Make_Skul();
+	player = DATAMANAGER->skuladdless();
 	return S_OK;
 }
 
@@ -26,11 +26,12 @@ void InGameScene::release()
 
 void InGameScene::update()
 {
-	player->update();
+//	player->update();
+	DATAMANAGER->update();
 }
-
 void InGameScene::render()
 {
 	DATAMANAGER->map_Render_Datamanager(getMemDC());
 	player->render();
+	
 }

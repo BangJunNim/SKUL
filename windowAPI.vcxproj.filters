@@ -186,6 +186,12 @@
     <ClInclude Include="Skul.h">
       <Filter>playGround\Skul</Filter>
     </ClInclude>
+    <ClInclude Include="Data_Library.h">
+      <Filter>playGround\DataManager</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionTestScene.h">
+      <Filter>playGround\Scene</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -268,6 +274,9 @@
     </ClCompile>
     <ClCompile Include="Skul.cpp">
       <Filter>playGround\Skul</Filter>
+    </ClCompile>
+    <ClCompile Include="CollisionTestScene.cpp">
+      <Filter>playGround\Scene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

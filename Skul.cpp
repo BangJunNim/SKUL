@@ -20,7 +20,7 @@ HRESULT Skul::init()
 {
 	// 스컬 헤드 대쉬 구현했으니깐 테스트 해봐야댐;
 	currentHead = new SkulHead(this);
-	//_info.currentHead->Enter();
+
 	return S_OK;
 }
 
@@ -30,7 +30,6 @@ void Skul::release()
 
 void Skul::update()
 {
-	
 	currentHead->Excute();
 }
 
@@ -38,6 +37,6 @@ void Skul::render()
 {
 	string SkulIdle;
 	SkulIdle = SKULDATA->aniKey;
-	IMAGEMANAGER->findImage(SKULDATA->imageKey)->aniRender(getMemDC(), SKULDATA->X - CAMERAMANAGER->Use_Func()->get_CameraXY().x, SKULDATA->Y - CAMERAMANAGER->Use_Func()->get_CameraXY().y, KEYANIMANAGER->findAnimation(SKULDATA->aniKey));
-
+	IMAGEMANAGER->findImage(SKULDATA->imageKey)->aniRender(getMemDC(), SKULDATA->X - CAMERAMANAGER->Use_Func()->get_CameraXY().x,
+	SKULDATA->Y - CAMERAMANAGER->Use_Func()->get_CameraXY().y, KEYANIMANAGER->findAnimation(SKULDATA->aniKey));
 }
