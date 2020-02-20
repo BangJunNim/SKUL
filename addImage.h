@@ -79,6 +79,8 @@ struct tagAddImage
 		IMAGEMANAGER->addFrameImage("LittlebornWalk", "./image/skul/Walk/skul_Walk_NoWeapon.bmp", 1280, 238, 8, 2, true, RGB(255, 0, 255));
 		IMAGEMANAGER->addFrameImage("LittIebornJump", "./image/skul/Jump/skul_Jump.bmp", 320, 238, 2, 2, true, RGB(255, 0, 255));
 		IMAGEMANAGER->addFrameImage("LittIebornDash", "./image/skul/Dash/skul_Dash.bmp", 320, 238, 2, 2, true, RGB(255, 0, 255));
+		IMAGEMANAGER->addFrameImage("LittlebornFall", "./image/skul/Fall/skul_Falling.bmp", 480, 238, 3, 2, true, RGB(255, 0, 255));
+		IMAGEMANAGER->addFrameImage("LittlebornNoHeadFall", "./image/skul/Fall/skul_Falling_NoHead.bmp", 480, 238, 3, 2, true, RGB(255, 0, 255));
 		IMAGEMANAGER->addFrameImage("SkulAttack", "./image/Skul/Attack/skul_Attack.bmp", 1440, 238, 9, 2, true, RGB(255, 0, 255));
 		IMAGEMANAGER->addFrameImage("SkulFall", "./image/Skul/Fall/skul_Fall.bmp", 800, 238, 5, 2, true, RGB(255, 0, 255));
 		IMAGEMANAGER->addFrameImage("SkulWeaponIdle", "./image/Skul/Idle/skul_Idle_HaveWeapon.bmp", 640, 238, 4, 2, true, RGB(255, 0, 255));
@@ -90,8 +92,10 @@ struct tagAddImage
 		// skul Ani addddddd  Right
 		KEYANIMANAGER->addCoordinateFrameAnimation("LittlebornIdleR", "Littleborn", 0, 3, 5, false, true);  
 		KEYANIMANAGER->addCoordinateFrameAnimation("LittlebornWalkR", "LittlebornWalk", 0, 7, 10, false, true);
-		KEYANIMANAGER->addCoordinateFrameAnimation("LittlebornJumpR", "LittIebornJump", 0, 1, 5, false, true);
+		KEYANIMANAGER->addCoordinateFrameAnimation("LittlebornJumpR", "LittIebornJump", 0, 1, 10, false, true);
 		KEYANIMANAGER->addCoordinateFrameAnimation("LittlebornDashR", "LittIebornDash", 0, 1, 5, false, true);
+		KEYANIMANAGER->addCoordinateFrameAnimation("LittlebornFallR", "LittlebornFall", 0, 2, 5, false, true);
+		KEYANIMANAGER->addCoordinateFrameAnimation("LittlebornNoHeadFallR", "LittlebornNoHeadFall", 0, 2, 5, false, true);
 		KEYANIMANAGER->addCoordinateFrameAnimation("SkulAttackR1", "SkulAttack", 0, 4, 5, false, true);
 		KEYANIMANAGER->addCoordinateFrameAnimation("SkulAttackR2", "SkulAttack", 5, 8, 5, false, true);
 		KEYANIMANAGER->addCoordinateFrameAnimation("SkulFallR", "SkulFall", 0, 4, 5, false, true);
@@ -104,8 +108,10 @@ struct tagAddImage
 		// skul Ani add left
 		KEYANIMANAGER->addCoordinateFrameAnimation("LittlebornIdleL", "Littleborn", 4, 7, 5, false, true);   
 		KEYANIMANAGER->addCoordinateFrameAnimation("LittlebornWalkL", "LittlebornWalk", 8,15, 10, false, true);
-		KEYANIMANAGER->addCoordinateFrameAnimation("LittlebornJumpL", "LittIebornJump", 2, 3, 5, false, true);
+		KEYANIMANAGER->addCoordinateFrameAnimation("LittlebornJumpL", "LittIebornJump", 2, 3, 10, false, true);
 		KEYANIMANAGER->addCoordinateFrameAnimation("LittlebornDashL", "LittIebornDash", 2, 3, 5, false, true);
+		KEYANIMANAGER->addCoordinateFrameAnimation("LittlebornFallL", "LittlebornFall", 3, 5, 5, false, true);
+		KEYANIMANAGER->addCoordinateFrameAnimation("LittlebornNoHeadFallL", "LittlebornNoHeadFall", 3, 5, 5, false, true);
 		KEYANIMANAGER->addCoordinateFrameAnimation("SkulAttackL1", "SkulAttack", 9, 13, 5, false, true);
 		KEYANIMANAGER->addCoordinateFrameAnimation("SkulAttackL2", "SkulAttack", 14, 17, 5, false, true);
 		KEYANIMANAGER->addCoordinateFrameAnimation("SkulFallL", "SkulFall", 5, 9, 5, false, true);

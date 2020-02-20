@@ -32,7 +32,7 @@ void SkulHead::Excute()
 	// 렉트 이미지 크기에 맞게 그림. 
 	SKULDATA->Rc = RectMake(SKULDATA->X, SKULDATA->Y, SKULDATA->Image->getWidth(), SKULDATA->Image->getHeight());
 	
-
+	// 방향 
 	if (SKULDATA->dir == DirectionRight)
 	{
 		directionTemp = +1;
@@ -41,23 +41,23 @@ void SkulHead::Excute()
 	{
 		directionTemp = -1;
 	}
+
 	// Dash ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
 	if (KEYMANAGER->isOnceKeyDown('Z')) 
 	{
-		SKULDATA->bSet.isDash = false;
+		SKULDATA->bSet.AniDash = false;
 
 		if (SKULDATA->DashData.Dash < SKULDATA->DashData.MaxDash)
 		{
-			SKULDATA->bSet.Moving = true;
+			SKULDATA->bSet.Moving = true; // 러프 
 			SKULDATA->Count = 0;
 			SKULDATA->DashData.Dash++;
 
 			SKULDATA->WorldTimeCount = TIMEMANAGER->getWorldTime();//
 			Dash();
-			
 		}
 	}
-	else
+	else 
 	{
 		SKULDATA->Count++;
 		if (SKULDATA->Count >= SKULDATA->getDashCoolTime())
@@ -70,25 +70,52 @@ void SkulHead::Excute()
 	}
 
 	//Attack ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-	if (KEYMANAGER->isOnceKeyDown('x'))
+	if (KEYMANAGER->isOnceKeyDown('X'))
 	{
 		Attack();
 	}
 
 	//jump ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-	if (KEYMANAGER->isOnceKeyDown('c')) 
+	if (KEYMANAGER->isOnceKeyDown('C')) 
 	{
+		SKULDATA->bSet.AniJump = false;
+		SKULDATA->bSet.isJump = true;
+	
+	
+
+		/*else
+		{
+			SKULDATA->bSet.isJump = false;
+			SKULDATA->bSet.isFall = true;
+			Fall();
+		}*/
+		
+	}
+	// 점프 중이니까 true값 
+	if (SKULDATA->bSet.isJump)
+	{
+		/*	SKULDATA->Y -= JUMPPOWER;
+
+			if (SKULDATA->Y > 0)
+			{
+				SKULDATA->Y -= SKULDATA->JumpData.JumpPower;
+			}
+
+			if (SKULDATA->Y > FALLMAXSPEED)
+			{
+				SKULDATA->Y += SKULDATA->JumpData.Gravity;
+			}*/
 		Jump();
 	}
 
 	//skill1 ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-	if (KEYMANAGER->isOnceKeyDown('a')) 
+	if (KEYMANAGER->isOnceKeyDown('A')) 
 	{
 		Skill1();
 	}
 
 	//skill2 ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-	if (KEYMANAGER->isOnceKeyDown('s'))
+	if (KEYMANAGER->isOnceKeyDown('S'))
 	{
 		Skill2();
 	}
@@ -114,7 +141,10 @@ void SkulHead::Excute()
 		SKULDATA->bSet.AniCheck = false;
 		Idle();
 	}
-	
+	/*if (KEYMANAGER->isOnceKeyUp('C'))  
+	{
+		Fall();
+	}*/
 
 	LerpMoving();
 	CAMERAMANAGER->Use_Func()->set_CameraXY(SKULDATA->X, SKULDATA->Y, true);
@@ -168,7 +198,6 @@ void SkulHead::Move()
 		}
 			SKULDATA->X -= SKULLSPEED;
 	}
-
 	else if (SKULDATA->dir == DirectionRight)
 	{
 		if (!SKULDATA->bSet.AniCheck)
@@ -186,7 +215,10 @@ void SkulHead::Move()
 	{
 		Dash();
 	} 
-
+	if (KEYMANAGER->isOnceKeyDown('C')) // Jump
+	{
+		Jump();
+	}
 }
 
 void SkulHead::Dash()
@@ -194,35 +226,62 @@ void SkulHead::Dash()
 
 	if (SKULDATA->dir == DirectionLeft)
 	{
-		if (!SKULDATA->bSet.isDash)
+		if (!SKULDATA->bSet.AniDash)
 		{
 			SKULDATA->Image = IMAGEMANAGER->findImage("LittIebornDash");
 			SKULDATA->Ani = KEYANIMANAGER->findAnimation("LittlebornDashL");
 			SKULDATA->imageKey = "LittIebornDash";
 			SKULDATA->aniKey = "LittlebornDashL";
 			SKULDATA->Ani->start();
-			SKULDATA->bSet.isDash = true;
+			SKULDATA->bSet.AniDash = true;
 		}
 	}
 
 	if (SKULDATA->dir == DirectionRight)
 	{
-		if (!SKULDATA->bSet.isDash)
+		if (!SKULDATA->bSet.AniDash)
 		{
 			SKULDATA->Image = IMAGEMANAGER->findImage("LittIebornDash");
 			SKULDATA->Ani = KEYANIMANAGER->findAnimation("LittlebornDashR");
 			SKULDATA->imageKey = "LittIebornDash";
 			SKULDATA->aniKey = "LittlebornDashR";
 			SKULDATA->Ani->start();
-			SKULDATA->bSet.isDash = true;
+			SKULDATA->bSet.AniDash = true;
 		}
 	}
-	
 }
 
 void SkulHead::Jump()
 {
-	// SKULDATA->Y = SKULDATA->Y - JUMPPOWER;
+	if (SKULDATA->dir == DirectionLeft)
+	{
+		if (!SKULDATA->bSet.AniJump)
+		{
+			SKULDATA->Image = IMAGEMANAGER->findImage("LittIebornJump");
+			SKULDATA->Ani = KEYANIMANAGER->findAnimation("LittlebornJumpL");
+			SKULDATA->imageKey = "LittIebornJump";
+			SKULDATA->aniKey = "LittlebornJumpL";
+			SKULDATA->Ani->start();
+			SKULDATA->bSet.AniJump = true;
+		}
+		SKULDATA->Y -= SKULDATA->JumpData.JumpPower;
+		SKULDATA->JumpData.JumpPower -= SKULDATA->JumpData.Gravity;
+	}
+
+	if (SKULDATA->dir == DirectionRight)
+	{
+		if (!SKULDATA->bSet.AniJump)
+		{
+			SKULDATA->Image = IMAGEMANAGER->findImage("LittIebornJump");
+			SKULDATA->Ani = KEYANIMANAGER->findAnimation("LittlebornJumpR");
+			SKULDATA->imageKey = "LittIebornJump";
+			SKULDATA->aniKey = "LittlebornJumpR";
+			SKULDATA->Ani->start();
+			SKULDATA->bSet.AniJump = true;
+		}
+		SKULDATA->Y -= SKULDATA->JumpData.JumpPower;
+		SKULDATA->JumpData.JumpPower -= SKULDATA->JumpData.Gravity;
+	}
 }
 
 void SkulHead::Fall()
@@ -272,12 +331,11 @@ void SkulHead::LerpMoving()
 	{
 		SKULDATA->WorldTimeCount = TIMEMANAGER->getWorldTime();
 
+		// 대쉬 끝났을 때 이미지들  다시 재생 
 		SKULDATA->bSet.Moving = false;
-
-		SKULDATA->bSet.isDash = false;
+		SKULDATA->bSet.AniCheck = false;
+		SKULDATA->bSet.AniDash = false;
 		Idle();
-
-		
 	}
 }
 
